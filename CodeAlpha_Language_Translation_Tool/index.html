@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniTranslate Pro — Next-Gen Neural Translation Studio</title>
+  <meta name="description" content="Professional, creative neural language translation studio with instant Google Translate & MyMemory APIs, text-to-speech, voice dictation, tone styling, and favorites.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
+<body>
+
+  <!-- Top Glass Navigation Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+        </div>
+        <div class="brand-details">
+          <h1>OmniTranslate <span class="brand-badge">Neural Pro</span></h1>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Neural Engine v3.2 Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tone Switcher & Quick Navigation -->
+      <div class="nav-controls">
+        <div class="tone-selector" role="radiogroup" aria-label="Translation Tone Style">
+          <button class="tone-btn active" data-tone="standard" title="Natural standard phrasing">🎯 Natural</button>
+          <button class="tone-btn" data-tone="business" title="Professional and formal business phrasing">💼 Business</button>
+          <button class="tone-btn" data-tone="casual" title="Casual and friendly phrasing">💬 Casual</button>
+          <button class="tone-btn" data-tone="academic" title="Precise academic phrasing">🎓 Academic</button>
+        </div>
+
+        <button id="favsToggleBtn" class="icon-btn" title="View Starred Favorites" aria-label="View Starred Favorites">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          <span id="favsCountBadge" class="badge-count" style="display: none;">0</span>
+        </button>
+
+        <button id="themeToggleBtn" class="icon-btn" title="Toggle Dark/Light Mode" aria-label="Toggle Dark/Light Mode">
+          <svg id="themeIconSun" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button id="settingsBtn" class="icon-btn" title="API Engine Settings" aria-label="API Settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Studio Content Wrapper -->
+  <main class="studio-wrapper">
+
+    <!-- Hero Title -->
+    <section class="hero-banner">
+      <h2>Translate Across 70+ Languages with <span class="gradient-span">Neural Precision</span></h2>
+      <p>Real-time cross-lingual synthesis, voice dictation, and speech pronunciation powered by intelligent AI.</p>
+    </section>
+
+    <!-- Category Quick Packs -->
+    <div class="category-strip">
+      <div class="category-tabs" role="tablist">
+        <button class="category-tab active" data-cat="everyday">✨ Everyday</button>
+        <button class="category-tab" data-cat="business">💼 Business</button>
+        <button class="category-tab" data-cat="travel">✈️ Travel</button>
+        <button class="category-tab" data-cat="tech">💻 Technology</button>
+        <button class="category-tab" data-cat="academic">🎓 Academic</button>
+      </div>
+
+      <div class="prompts-list" id="promptsListContainer">
+        <!-- Dynamically populated based on category tab -->
+      </div>
+    </div>
+
+    <!-- Master Translator Cockpit -->
+    <div class="master-card">
+
+      <!-- Language Toolbar -->
+      <nav class="language-toolbar" aria-label="Language selection">
+        <!-- Source Languages -->
+        <div class="lang-selector-group" id="sourceQuickGroup">
+          <!-- Populated via JS -->
+        </div>
+
+        <div class="dropdown-container">
+          <select id="sourceSelect" class="lang-select-dropdown" aria-label="Select source language"></select>
+          <span class="dropdown-chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+
+        <!-- Swap Languages Button -->
+        <div class="swap-zone">
+          <button id="swapBtn" class="btn-swap-main" title="Swap languages & content (Alt + S)" aria-label="Swap source and target languages">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="17 1 21 5 17 9"></polyline>
+              <path d="M3 5h18"></path>
+              <polyline points="7 23 3 19 7 15"></polyline>
+              <path d="M21 19H3"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Target Languages -->
+        <div class="lang-selector-group" id="targetQuickGroup">
+          <!-- Populated via JS -->
+        </div>
+
+        <div class="dropdown-container">
+          <select id="targetSelect" class="lang-select-dropdown" aria-label="Select target language"></select>
+          <span class="dropdown-chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+      </nav>
+
+      <!-- Dual Translation Panels -->
+      <section class="panels-grid">
+        <!-- Source Column -->
+        <div class="panel-col source-col">
+          <div class="textarea-wrap">
+            <textarea 
+              id="sourceText" 
+              class="main-textarea" 
+              placeholder="Type, paste, or click the mic to dictate..." 
+              aria-label="Text to translate"
+              spellcheck="false"
+              autofocus
+            ></textarea>
+            <button id="clearBtn" class="btn-clear-float" title="Clear text (Esc)" aria-label="Clear source text">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <div class="panel-foot">
+            <div class="foot-tools">
+              <button id="micBtn" class="tool-btn" title="Voice Dictation (Speech-to-Text)" aria-label="Dictate text with microphone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+              </button>
+
+              <button id="speakSourceBtn" class="tool-btn" title="Listen to input pronunciation" aria-label="Listen to source text">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+              </button>
+
+              <button id="copySourceBtn" class="tool-btn" title="Copy source text" aria-label="Copy input text">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+
+              <label class="tool-btn" title="Upload .txt file to translate" style="cursor: pointer;">
+                <input type="file" id="fileUploadInput" accept=".txt" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+              </label>
+
+              <div id="sourceAudioWaves" class="sound-waves" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="stats-badges">
+              <span id="charCount" class="stat-pill">0 chars</span>
+              <span id="wordCount" class="stat-pill">0 words</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Target Column -->
+        <div class="panel-col target-col">
+          <div class="target-header-meta">
+            <div class="ai-confidence-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>99.8% Neural Accuracy</span>
+            </div>
+            <div class="tone-indicator-badge" id="activeToneIndicator">Tone: Natural</div>
+          </div>
+
+          <div id="loadingOverlay" class="loading-overlay" aria-hidden="true">
+            <div class="spinner-ring"></div>
+            <span class="loading-text">Translating with Neural Precision...</span>
+          </div>
+
+          <div id="targetText" class="output-display" aria-live="polite" aria-label="Translated output">
+            <span class="output-placeholder">Translation will appear here instantly...</span>
+          </div>
+
+          <div class="panel-foot">
+            <div class="foot-tools">
+              <button id="speakTargetBtn" class="tool-btn" title="Listen to translation" aria-label="Listen to translated output">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+              </button>
+
+              <button id="copyBtn" class="tool-btn" title="Copy translated text (Alt + C)" aria-label="Copy translated text">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+
+              <button id="starBtn" class="tool-btn" title="Save to Starred Favorites" aria-label="Star translation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </button>
+
+              <button id="downloadBtn" class="tool-btn" title="Download translation as .txt" aria-label="Download translation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </button>
+
+              <div id="targetAudioWaves" class="sound-waves" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="stats-badges">
+              <span id="targetWordCount" class="stat-pill">0 words</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Action Strip -->
+      <footer class="master-action-strip">
+        <div class="engine-status-box">
+          <div class="engine-live-dot"></div>
+          <span>Active Pipeline: <strong id="engineIndicatorText">Google Neural API</strong></span>
+        </div>
+
+        <div>
+          <button id="translateBtn" class="btn-main-translate" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Translate Now</span>
+            <span class="kbd-tag">Ctrl+Enter</span>
+          </button>
+        </div>
+      </footer>
+    </div>
+
+    <!-- History & Favorites Section -->
+    <section class="history-block" id="historyBlock">
+      <div class="history-head-row">
+        <div class="history-tabs-nav">
+          <button class="history-tab-btn active" id="tabHistoryRecent">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Recent History</span>
+          </button>
+          <button class="history-tab-btn" id="tabHistoryFavorites">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span>Starred Phrases</span>
+          </button>
+        </div>
+
+        <div class="history-actions">
+          <button id="clearHistoryBtn" class="btn-clear-hist" type="button">Clear All</button>
+        </div>
+      </div>
+
+      <div id="historyList" class="history-cards-grid">
+        <!-- Dynamically rendered -->
+      </div>
+    </section>
+
+    <!-- Bottom Keyboard Shortcuts Bar -->
+    <div class="bottom-shortcuts-bar">
+      <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>Enter</kbd> Translate</div>
+      <div class="shortcut-item"><kbd>Alt</kbd> + <kbd>S</kbd> Swap Languages</div>
+      <div class="shortcut-item"><kbd>Alt</kbd> + <kbd>C</kbd> Copy Output</div>
+      <div class="shortcut-item"><kbd>Esc</kbd> Clear Input</div>
+    </div>
+  </main>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal-surface">
+      <div class="modal-header-row">
+        <h3 id="settingsTitle">Neural Engine Preferences</h3>
+        <button id="closeSettingsBtn" class="icon-btn" aria-label="Close dialog">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="form-field">
+        <label for="engineSelect">Active Translation Engine</label>
+        <select id="engineSelect">
+          <option value="google-free">Google Translate Neural API (Free - Default)</option>
+          <option value="mymemory">MyMemory Translation Engine (Free)</option>
+          <option value="google-cloud">Google Cloud Translation API v2 (Custom Key)</option>
+          <option value="azure">Microsoft Azure Cognitive Translator (Custom Key)</option>
+        </select>
+        <span class="form-hint-txt">The default Google Translate neural pipeline translates instantaneously with zero API keys required.</span>
+      </div>
+
+      <div class="form-field" id="apiKeyGroup" style="display: none;">
+        <label for="apiKeyInput">API Key / Subscription Key</label>
+        <input type="password" id="apiKeyInput" placeholder="Paste your API key here...">
+        <span class="form-hint-txt">Stored securely in your browser's private local storage.</span>
+      </div>
+
+      <div class="modal-btn-row">
+        <button id="saveSettingsBtn" class="btn-glow-save" type="button">Save Preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container" aria-live="assertive"></div>
+
+  <!-- Scripts -->
+  <script src="languages.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
